@@ -11,7 +11,7 @@ from picklejar import PickleJar
 myjar = PickleJar()
 
 # provide location of your pickles or use the default (/picklejar)
-jarMeta = myjar.pickles() # returns metadata about the jar
+jarMeta = myjar.meta() # returns metadata about the jar
 
 # sample data
 myobj = { 'one': 1, 'two': 2, 'three': 3 }

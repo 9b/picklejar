@@ -4,7 +4,7 @@ class PickleJar():
 	LOCATION = '/picklejar'
 	PICKLEJAR = 'picklejar.pickle'
 
-	def __init__(self):
+	def __init__(self, location=None):
 	
 		self.__jarContents = {
 			'overwrite': True,
@@ -16,26 +16,6 @@ class PickleJar():
 		}
 		self.__writePoint = None
 		
-	def __save(self, check=None):
-		'''
-		Save the jar mapping as a pickle inside our jar
-		'''
-		if not check:
-			check = self.__jarContents['savePoint']
-		
-		self.__jarContents['pickles'] = len(self.__jarContents['mappings'].keys())
-		self.__jarContents['updated'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-		
-		with open(check, "wb") as jarMap:
-			cPickle.dump(self.__jarContents, jarMap)
-		jarMap.close()
-		self.__jarContents['savePoint'] = check
-	
-	def pickles(self, location=None):
-		'''
-		Create or open a picklejar for editing and use the map as a guide
-		@returns	metadata describing the jar and its contents
-		'''
 		if not location:
 			location = self.LOCATION
 		if location.endswith('/'): location[:-1]	
@@ -53,7 +33,27 @@ class PickleJar():
 			self.__save(check)
 			
 		self.__writePoint = location + '/'
-			
+		
+	def __save(self, check=None):
+		'''
+		Save the jar mapping as a pickle inside our jar
+		'''
+		if not check:
+			check = self.__jarContents['savePoint']
+		
+		self.__jarContents['pickles'] = len(self.__jarContents['mappings'].keys())
+		self.__jarContents['updated'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+		
+		with open(check, "wb") as jarMap:
+			cPickle.dump(self.__jarContents, jarMap)
+		jarMap.close()
+		self.__jarContents['savePoint'] = check
+	
+	def meta(self, location=None):
+		'''
+		Create or open a picklejar for editing and use the map as a guide
+		@returns	metadata describing the jar and its contents
+		'''
 		return self.__jarContents
 		
 	def store(self, id, pickle):
@@ -104,3 +104,15 @@ class PickleJar():
 			return contents
 		else:
 			raise ValueError('NOTFOUND', 'The pickle ID you specified does not exist inside this jar')
+			
+	
+
+			
+			
+	
+			
+			
+		
+		
+			
+		
