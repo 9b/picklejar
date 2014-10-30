@@ -56,7 +56,7 @@ class PickleJar():
 		'''
 		return self.__jarContents
 		
-	def put(self, id, pickle):
+	def store(self, id, pickle):
 		'''
 		Take a data object and try to pickle it in our jar
 		1) attempt to pickle

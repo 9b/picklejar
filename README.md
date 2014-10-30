@@ -17,7 +17,7 @@ jarMeta = myjar.meta() # returns metadata about the jar
 myobj = { 'one': 1, 'two': 2, 'three': 3 }
 
 # store your object with an id
-myjar.store('testObj', myobj)
+myjar.put('testObj', myobj)
 
 # pull from the pickle jar
 reloaded = myjar.get('testObj')
