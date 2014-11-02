@@ -26,3 +26,23 @@ reloaded = myjar.get('testObj')
 print reloaded
 
 </pre>
+
+# Using Brine
+
+Brine provides a decorator for a function that inspects the local variables for the items you wish to pickle. This functionality is provided using two variables, 1) _pid which is the label of the pickle and 2) _dill the item to pickle.
+
+Here's a test function:
+
+<pre>
+from picklejar import brine
+
+@brine()
+def getWebsite(url):
+    _pid = url # use this to get the pickle later
+    _dill = requests.get(url) # item to pickle
+    return _dill
+
+getWebsite('https://www.google.com')
+</pre>
+
+If you are not using the default location for your jar, then you will need to pass your jar instance to the brine method. 
