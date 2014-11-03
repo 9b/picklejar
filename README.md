@@ -44,7 +44,7 @@ Here's a test function:
 <pre>
 from picklejar import brine
 
-@brine(scope=['\_\_all__'])
+@brine(scope=['__all__'])
 def getWebsite(url):
     website = requests.get(url) # item to pickle
     return website
