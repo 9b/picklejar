@@ -35,7 +35,7 @@ There are three types of scope:
 
 | Scope             | Explanation                                                      |
 |-------------------|------------------------------------------------------------------|
-| __all__           | Attempts to save all variables using their name as the unique ID |
+| \_\_all__           | Attempts to save all variables using their name as the unique ID |
 | [ 'a', 'b', 'c' ] | Attempts to save all variables listed within the scope           |
 | None              | Attempts to only save the variables named "_dill" and "_id"      |
 
@@ -44,7 +44,7 @@ Here's a test function:
 <pre>
 from picklejar import brine
 
-@brine(scope=['__all__'])
+@brine(scope=['\_\_all__'])
 def getWebsite(url):
     website = requests.get(url) # item to pickle
     return website
